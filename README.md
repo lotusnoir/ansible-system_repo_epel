@@ -1,40 +1,50 @@
-# Ansible Role: EPEL Repository
+# ansible-system_repo_epel
 
-[![CI](https://github.com/geerlingguy/ansible-role-repo-epel/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-repo-epel/actions?query=workflow%3ACI)
+[![Galaxy Role](https://img.shields.io/badge/galaxy-system_repo_epel-purple?style=flat)](https://galaxy.ansible.com/lotusnoir/system_repo_epel)
+[![Version](https://img.shields.io/github/release/lotusnoir/ansible-system_repo_epel.svg)](https://github.com/lotusnoir/ansible-system_repo_epel/releases/latest)
+[![GitHub repo size](https://img.shields.io/github/repo-size/lotusnoir/ansible-system_repo_epel?color=orange&style=flat)](https://galaxy.ansible.com/lotusnoir/system_repo_epel)
+[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/lotusnoir/system_repo_epel)
+[![Ansible Quality Score](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/lotusnoir/system_repo_epel)
+[![License](https://img.shields.io/badge/license-Apache--2.0-brightgreen?style=flat)](https://opensource.org/licenses/Apache-2.0)
 
-Installs the [EPEL repository](https://fedoraproject.org/wiki/EPEL) (Extra Packages for Enterprise Linux) for RHEL/CentOS.
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Description](#description)
+- [Requirements](#requirements)
+- [Role variables](#role-variables)
+- [Examples](#examples)
+- [License](#license)
+- [Author Information](#author-information)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Description
+
+configure epel repository for redhat family
 
 ## Requirements
 
-This role only is needed/runs on RHEL and its derivatives.
+none
 
-## Role Variables
+## Role variables
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
+See [variables](/defaults/main.yml) for more details.
 
-    epel_repo_url: "http://download.fedoraproject.org/pub/epel/{{ ansible_distribution_major_version }}/{{ ansible_userspace_architecture }}{{ '/' if ansible_distribution_major_version < '7' else '/e/' }}epel-release-{{ ansible_distribution_major_version }}-{{ epel_release[ansible_distribution_major_version] }}.noarch.rpm"
-    epel_repo_gpg_key_url: "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"
+## Examples
 
-The EPEL repo URL and GPG key URL. Generally, these should not be changed, but if this role is out of date, or if you need a very specific version, these can both be overridden.
-
-    epel_repo_disable: false
-
-Set to `true` to disable the EPEL repo (even if already installed).
-
-## Dependencies
-
-None.
-
-## Example Playbook
-
-    - hosts: servers
-      roles:
-        - geerlingguy.repo-epel
+        ---
+        - hosts: system_repo_epel
+          become: true
+          become_method: sudo
+          gather_facts: true
+          roles:
+            - role: ansible-system_repo_epel
 
 ## License
 
-MIT / BSD
+This project is licensed under Apache License. See [LICENSE](/LICENSE) for more details.
 
 ## Author Information
 
-This role was created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+- [Philippe LEAL](https://github.com/lotusnoir)

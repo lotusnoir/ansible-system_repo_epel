@@ -1,35 +1,25 @@
 ---
-- name: Check if EPEL repo is already configured.
-  stat:
-    path: "{{ epel_repofile_path }}"
-  register: epel_repofile_result
+### Checks
+- name: Import check tasks
+  ansible.builtin.import_tasks: check.yml
 
-- name: Import EPEL GPG key.
-  rpm_key:
-    key: "{{ epel_repo_gpg_key_url }}"
-    state: present
-  register: result
-  until: result is succeeded
-  retries: 5
-  delay: 10
-  when: not epel_repofile_result.stat.exists
-  ignore_errors: "{{ ansible_check_mode }}"
+### Import vars
+- name: Gather OS specific variables
+  ansible.builtin.include_vars: "{{ params }}"
+  vars:
+    params_:
+      files:
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+      paths:
+        - vars
+    params: "{{ lookup('first_found', params_, errors='ignore') }}"
+  when:
+    - (params | length > 0)
 
-- name: Install EPEL repo.
-  yum:
-    name: "{{ epel_repo_url }}"
-    state: present
-  register: result
-  until: result is succeeded
-  retries: 5
-  delay: 10
-  when: not epel_repofile_result.stat.exists
-
-- name: Disable Main EPEL repo.
-  ini_file:
-    path: "/etc/yum.repos.d/epel.repo"
-    section: epel
-    option: enabled
-    value: "{{ epel_repo_disable | ternary(0, 1) }}"
-    no_extra_spaces: true
-    mode: 0644
+### Install
+- name: Import install tasks
+  ansible.builtin.import_tasks: install.yml
