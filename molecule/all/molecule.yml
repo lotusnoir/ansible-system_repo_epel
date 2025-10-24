@@ -59,7 +59,7 @@ provisioner:
     ansible_python_interpreter: auto_silent
   config_options:
     defaults:
-      roles_path: "$MOLECULE_PROJECT_DIRECTORY/.."
+      roles_path: "${HOME}/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:$MOLECULE_PROJECT_DIRECTORY/.."
       callbacks_enabled: timer, profile_tasks, profile_roles
       verbosity: 3
       forks: 20
