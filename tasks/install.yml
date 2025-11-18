@@ -38,10 +38,10 @@
       delay: 10
 
 - name: Disable Main EPEL repo.
-  community.general.ini_file:
+  ansible.builtin.lineinfile:
     path: "/etc/yum.repos.d/epel.repo"
-    section: epel
-    option: enabled
-    value: "{{ epel_repo_disable | ternary(0, 1) }}"
-    no_extra_spaces: true
-    mode: '0644'
+    regexp: '^enabled\s*='
+    line: 'enabled={{ epel_repo_disable | ternary(0, 1) }}'
+    insertafter: '^\[epel\]'
+    backrefs: true
+  when: epel_repo_disable is defined

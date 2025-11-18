@@ -3,8 +3,7 @@
 [![Galaxy Role](https://img.shields.io/badge/galaxy-system_repo_epel-purple?style=flat)](https://galaxy.ansible.com/lotusnoir/system_repo_epel)
 [![Version](https://img.shields.io/github/release/lotusnoir/ansible-system_repo_epel.svg)](https://github.com/lotusnoir/ansible-system_repo_epel/releases/latest)
 [![GitHub repo size](https://img.shields.io/github/repo-size/lotusnoir/ansible-system_repo_epel?color=orange&style=flat)](https://galaxy.ansible.com/lotusnoir/system_repo_epel)
-[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/lotusnoir/system_repo_epel)
-[![Ansible Quality Score](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/lotusnoir/system_repo_epel)
+[![downloads](https://img.shields.io/ansible/role/d/lotusnoir/system_repo_epel)](https://galaxy.ansible.com/lotusnoir/system_repo_epel)
 [![License](https://img.shields.io/badge/license-Apache--2.0-brightgreen?style=flat)](https://opensource.org/licenses/Apache-2.0)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
