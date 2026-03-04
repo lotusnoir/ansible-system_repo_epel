@@ -1,3 +1,6 @@
+---
 skip_list:
-  - 'yaml'
-  - 'role-name'
+  - '106'
+  - '401'
+  - 'schema'
+  - 'yaml[line-length]'
